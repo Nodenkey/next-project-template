@@ -1,7 +1,9 @@
 {
 	"name": "next-project-template",
 	"version": "0.1.0",
-	"private": true,
+	"description": "Next.js project template with Tailwind CSS, TypeScript, ESLint, Prettier, Husky, and Cypress",
+	"private": false,
+	"author": "Samuel Odenkey Abbey",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
