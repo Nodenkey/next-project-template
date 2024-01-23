@@ -6,12 +6,13 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "eslint \"**/*.{ts,tsx}\"",
-		"lint:fix": "eslint --fix --ext .ts,.tsx .",
+		"lint": "next lint",
+		"lint:fix": "eslint --fix .",
+		"prettier": "npx prettier src --check",
+		"prettier:fix": "npm run prettier -- --write",
 		"prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
 		"prepare": "husky install",
-		"cypress": "cypress open",
-		"prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\""
+		"cypress": "cypress open"
 	},
 	"dependencies": {
 		"@headlessui/react": "^1.7.18",

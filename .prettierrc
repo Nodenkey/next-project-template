@@ -3,7 +3,6 @@
   "tabWidth": 4,
   "printWidth": 120,
   "singleQuote": true,
-  "jsxBracketSameLine": true,
   "arrowParens": "avoid",
   "bracketSpacing": true,
   "embeddedLanguageFormatting": "auto",
