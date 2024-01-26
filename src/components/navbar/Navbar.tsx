@@ -1,51 +1,51 @@
 'use client';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React, { FC, Fragment } from 'react';
 
 import { classNames } from '@/utils/utilityFunctions';
 
+const navigation = [
+	{
+		name: 'Dashboard',
+		href: '#',
+	},
+	{
+		name: 'Team',
+		href: '#',
+	},
+	{
+		name: 'Projects',
+		href: '#',
+	},
+	{
+		name: 'Calendar',
+		href: '#',
+	},
+];
+
 const Navbar: FC = () => {
+	const pathname = usePathname();
 	return (
-		<Disclosure as='nav' className='bg-white shadow'>
+		<Disclosure as='nav' className='fixed w-full'>
 			{({ open }) => (
 				<>
 					<div className='mx-auto max-w-7xl px-2 sm:px-4 lg:px-8'>
 						<div className='flex h-16 justify-between'>
 							<div className='flex px-2 lg:px-0'>
-								<div className='flex flex-shrink-0 items-center'>
-									<img
+								<Link href='/' className='flex flex-shrink-0 items-center'>
+									<Image
+										height={32}
+										width={0}
+										quality={75}
+										priority={true}
 										className='h-8 w-auto'
-										src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
-										alt='Your Company'
+										src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+										alt='Company'
 									/>
-								</div>
-								<div className='hidden lg:ml-6 lg:flex lg:space-x-8'>
-									{/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-									<a
-										href='#'
-										className='inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900'
-									>
-										Dashboard
-									</a>
-									<a
-										href='#'
-										className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-									>
-										Team
-									</a>
-									<a
-										href='#'
-										className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-									>
-										Projects
-									</a>
-									<a
-										href='#'
-										className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-									>
-										Calendar
-									</a>
-								</div>
+								</Link>
 							</div>
 							<div className='flex items-center lg:hidden'>
 								{/* Mobile menu button */}
@@ -56,19 +56,27 @@ const Navbar: FC = () => {
 								</Disclosure.Button>
 							</div>
 							<div className='hidden lg:ml-4 lg:flex lg:items-center'>
-								<button
-									type='button'
-									className='relative flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-								>
-									<span className='absolute -inset-1.5' />
-									<span className='sr-only'>View notifications</span>
-									<p>Notification</p>
-								</button>
+								<div className='hidden lg:flex lg:space-x-8'>
+									{navigation.map(item => (
+										<Link
+											key={item.name}
+											href='#'
+											className={classNames(
+												pathname.toLowerCase().split('/').includes(item.name.toLowerCase())
+													? 'border-indigo-500'
+													: 'border-transparent',
+												'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-900',
+											)}
+										>
+											{item.name}
+										</Link>
+									))}
+								</div>
 
 								{/* Profile dropdown */}
-								<Menu as='div' className='relative ml-4 flex-shrink-0'>
+								<Menu as='div' className='relative ml-8 flex-shrink-0'>
 									<div>
-										<Menu.Button className='relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+										<Menu.Button className='relative flex rounded-full bg-white text-sm outline-none ring-2 ring-indigo-500 ring-offset-2'>
 											<span className='absolute -inset-1.5' />
 											<span className='sr-only'>Open user menu</span>
 											<img
